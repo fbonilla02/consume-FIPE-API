@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles/main.css" rel="stylesheet">
+    <title>Avaluo de vehiculos</title>
+</head>
+<body>
+    <h1>Hola</h1>
+    <p class="text-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a nisl leo. Pellentesque quis odio convallis, convallis eros a, vestibulum sem. In non neque eget ligula vulputate suscipit luctus a nulla. Suspendisse vulputate dapibus neque et eleifend. Ut fermentum, odio in dapibus tincidunt, nibh urna auctor diam, ac ullamcorper leo nulla at eros. </p>
+    <form id="formVehicle" class="form-Container">
+        <label for="typeVehicle">Tipo de vehiculo</label>
+        <select id="typeVehicle"   class="xd">
+            <option value="">selecione</option>
+            <option value='carros'>carros</option>
+            <option value='motos'>motos</option>
+            <option value='caminhoes'>caminhoes</option>
+        </select>
+        <label for="brand"  id='brand-label' class="hidden">Marca</label>
+        <select id="brand" class="xd hidden">
+
+        </select>
+        <label for="model"  id='model-label' class="hidden">Modelo</label>
+        <select id="model" class="xd hidden">
+        </select>
+
+        <label for="year"  id='year-label' class="hidden">Año</label>
+        <select id="year" class="xd hidden">
+        </select>
+        <button id="button" type="submit" class="button hidden" >Consute su avaluo</button>
+    </form>
+
+    <section id="mostrarAvaluo" class="avaluo hidden">
+   
+    </section>
+    <script type="module" src="./scripts/index.js" ></script>
+</body>
+</html>
