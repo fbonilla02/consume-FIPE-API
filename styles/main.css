@@ -57,7 +57,9 @@ select{
 }
 
 
-
+.hidden{
+    display: none;
+}
 
 @media screen and (min-width:768px){
     h1{
@@ -65,12 +67,14 @@ select{
     }
     .form-Container{
         display: flex;
-        flex-direction: row;
-        padding: 0 10%;
-        gap: 20px;
+        flex-direction: column;
+        padding: 0 20%;
+        gap: 10px;
+    }
+    .avaluo{
+        border: 1px solid #fff;
+        margin: 20px 20%;
+        padding: 20px;
     }
 
-}
-.hidden{
-    display: none;
 }

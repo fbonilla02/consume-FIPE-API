@@ -60,12 +60,26 @@ modelo.addEventListener('change', async(e)=>{
 formVehicle.addEventListener('submit', async(e)=>{
     e.preventDefault()
     const total = await fetch(`${url}/${initialvalues.typeVehicle}/marcas/${initialvalues.brand}/modelos/${initialvalues.model}/anos/${initialvalues.year}`).then(data => data.json())
+    const valorCut = total.Valor.slice(3)
+    
+    let valorImpuesto = ''
+    if(total.Combustivel === 'Gasolina'){
+        valorImpuesto = 5 * (parseFloat(valorCut) / 100)
+    }else if(total.Combustivel === 'Diesel'){
+        valorImpuesto = 2.5 * (parseFloat(valorCut) / 100)
+    }else if(total.Combustivel === 'Diesel'){
+        valorImpuesto = 1 * (parseFloat(valorCut) / 100)
+    }else{
+        valorImpuesto = valorCut
+    }
+
     mostrarAvaluo.classList.remove('hidden')
+    
     mostrarAvaluo.innerHTML = `<P>Marca: ${total.Marca}</P>
     <p>Modelo: ${total.Modelo}</p>
     <p>Combustible: ${total.Combustivel}</p>
         <p>Valor: ${total.Valor}</p>
-        <p>Impuestos:${total.Marca}</p>
+        <p>Impuestos:${valorImpuesto}</p>
         <button>Converti a pesos</button>
         <div class="hidden">
         <p>Pesos COP:</p>
