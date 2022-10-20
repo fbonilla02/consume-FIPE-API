@@ -23,6 +23,8 @@ const initialvalues = {
     const divisas = document.getElementById('divisas')
     const seccionInfo = document.getElementById('seccionInfo')
     const mostrarDivisas = document.getElementById('mostrarDivisas')
+    const reset = document.getElementById('reset')
+    const resetButton = document.getElementById('reset-button')
     let valorImpuesto = ''
     let valorCut = ''
 
@@ -35,6 +37,7 @@ const initialvalues = {
     .then(data => data.json())
     brand.classList.remove('hidden')
     brandLabel.classList.remove('hidden')
+    reset.classList.remove('hidden')
     option(brand, vehiclesb)
   })
   //Escucha de que seleccionen la marca
@@ -61,7 +64,7 @@ modelo.addEventListener('change', async(e)=>{
  year.addEventListener('change', async(e)=>{
      initialvalues.year = e.target.value
      button.classList.remove('hidden')
-    
+
  })
 formVehicle.addEventListener('submit', async(e)=>{
     e.preventDefault()
@@ -104,4 +107,25 @@ mostrarDivisas.addEventListener('click', async ()=>{
     divisas.innerHTML = `<h3 class='center'>Valores en Cop</h3>
     <p><stong>Pesos :</stong> ${copResult} COP</p>
     <p><stong>Impuestos :</stong> ${copResultimp} COP</p>`
+})
+
+//Reset all
+resetButton.addEventListener('click', ()=>{
+    
+    initialvalues.typeVehicle = ''
+    initialvalues.brand = ''
+    initialvalues.brand = ''
+    initialvalues.model = ''
+    initialvalues.year = ''
+    brand.classList.add('hidden')
+    brandLabel.classList.add('hidden')
+    modelo.classList.add('hidden')
+    modeloLabel.classList.add('hidden')
+    year.classList.add('hidden')
+    yearLabel.classList.add('hidden')
+    divisas.classList.add('hidden')
+    mostrarAvaluo.classList.add('hidden')
+    seccionInfo.classList.add('hidden')
+    button.classList.add('hidden')
+    console.log(initialvalues);
 })

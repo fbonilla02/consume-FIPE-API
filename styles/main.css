@@ -75,6 +75,24 @@ stong{
     text-align: center;
     
 }
+.reset-container{
+
+    margin: 20px 40%;
+    gap: 5px;
+    
+}
+
+.reset-button{
+    margin: 15px 0px;
+    padding: 0px 10px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #ec2e2e;
+    border-radius: 10px;
+}
+
 @media screen and (min-width:768px){
     h1{
         font-size: 30px;
