@@ -105,14 +105,3 @@ mostrarDivisas.addEventListener('click', async ()=>{
     <p><stong>Pesos :</stong> ${copResult} COP</p>
     <p><stong>Impuestos :</stong> ${copResultimp} COP</p>`
 })
-
-
-
-/* const changeVehicle = async() =>{
-    const vehicle = typevehicle.value
-    initialvalues.typeVehicle = vehicle
-    console.log(vehicle);
-    const vehiclesb =await fetch(`${url}/${vehicle.type}/marcas`)
-    .then(data => data.json())
-    createbrandlist(vehiclesb)
-} */
