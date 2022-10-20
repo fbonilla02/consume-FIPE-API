@@ -10,17 +10,23 @@ const initialvalues = {
     year:''
 }
 
-  const typevehicle = document.getElementById("typeVehicle")
-  const brand = document.getElementById('brand')
-  const brandLabel = document.getElementById('brand-label')
-  const modelo = document.getElementById('model')
-  const modeloLabel = document.getElementById('model-label')
-  const year = document.getElementById('year')
-  const yearLabel = document.getElementById('year-label')
-  const button = document.getElementById('button')
-  const formVehicle = document.getElementById('formVehicle')
-  const mostrarAvaluo = document.getElementById('mostrarAvaluo')
+    const typevehicle = document.getElementById("typeVehicle")
+    const brand = document.getElementById('brand')
+    const brandLabel = document.getElementById('brand-label')
+    const modelo = document.getElementById('model')
+    const modeloLabel = document.getElementById('model-label')
+    const year = document.getElementById('year')
+    const yearLabel = document.getElementById('year-label')
+    const button = document.getElementById('button')
+    const formVehicle = document.getElementById('formVehicle')
+    const mostrarAvaluo = document.getElementById('mostrarAvaluo')
+    const divisas = document.getElementById('divisas')
+    const seccionInfo = document.getElementById('seccionInfo')
+    const mostrarDivisas = document.getElementById('mostrarDivisas')
+    let valorImpuesto = ''
+    let valorCut = ''
 
+    
 
     typevehicle.addEventListener('change', async(e)=>{
     const vehicle = e.target.value
@@ -59,10 +65,11 @@ modelo.addEventListener('change', async(e)=>{
  })
 formVehicle.addEventListener('submit', async(e)=>{
     e.preventDefault()
-    const total = await fetch(`${url}/${initialvalues.typeVehicle}/marcas/${initialvalues.brand}/modelos/${initialvalues.model}/anos/${initialvalues.year}`).then(data => data.json())
-    const valorCut = total.Valor.slice(3)
+    const total = await fetch(`${url}/${initialvalues.typeVehicle}/marcas/${initialvalues.brand}/modelos/${initialvalues.model}/anos/${initialvalues.year}`)
+    .then(data => data.json())
+    valorCut = total.Valor.slice(3)
     
-    let valorImpuesto = ''
+    
     if(total.Combustivel === 'Gasolina'){
         valorImpuesto = 5 * (parseFloat(valorCut) / 100)
     }else if(total.Combustivel === 'Diesel'){
@@ -74,19 +81,32 @@ formVehicle.addEventListener('submit', async(e)=>{
     }
 
     mostrarAvaluo.classList.remove('hidden')
-    
-    mostrarAvaluo.innerHTML = `<P>Marca: ${total.Marca}</P>
+    seccionInfo.classList.remove('hidden')
+    mostrarAvaluo.innerHTML += `<P>Marca: ${total.Marca}</P>
     <p>Modelo: ${total.Modelo}</p>
     <p>Combustible: ${total.Combustivel}</p>
         <p>Valor: ${total.Valor}</p>
-        <p>Impuestos:${valorImpuesto}</p>
-        <button>Converti a pesos</button>
-        <div class="hidden">
-        <p>Pesos COP:</p>
-        <p>Impuestos COP:</p>
-        </div>
+        <p>Impuestos: ${valorImpuesto}</p>
+       
     `
+    
 })
+
+mostrarDivisas.addEventListener('click', async ()=>{
+    const DivisasData = await fetch(`https://api.currencyapi.com/v3/latest?apikey=wGxjoch3kodfb1tdwXu5mT3eTUIALlvRSdYtQZzT&currencies=COP%2CBRL&base_currency=BRL`)
+    .then(data => data.json())
+    divisas.classList.remove('hidden')
+    const result = (DivisasData.data.COP.value * parseFloat(valorCut)).toFixed(4)
+    const resultimp = (DivisasData.data.COP.value * valorImpuesto).toFixed(4)
+
+    //convertimos las monedas en cop antes de mapearlas
+    const copResult =  Intl.NumberFormat( {  currency: 'COP' }).format(result)
+    const copResultimp =  Intl.NumberFormat({  currency: 'COP' }).format(resultimp)
+    divisas.innerHTML = `
+    <p>Pesos COP: ${copResult}</p>
+        <p>Impuestos COP: ${copResultimp}</p>`
+})
+
 
 
 /* const changeVehicle = async() =>{
