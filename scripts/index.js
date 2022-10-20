@@ -127,5 +127,5 @@ resetButton.addEventListener('click', ()=>{
     mostrarAvaluo.classList.add('hidden')
     seccionInfo.classList.add('hidden')
     button.classList.add('hidden')
-    console.log(initialvalues);
+
 })

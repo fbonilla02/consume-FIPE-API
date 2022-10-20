@@ -76,14 +76,18 @@ stong{
     
 }
 .reset-container{
-
-    margin: 20px 40%;
+    margin:20px auto;
+    width:90%;
     gap: 5px;
     
 }
 
 .reset-button{
-    margin: 15px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
     padding: 0px 10px;
     height: 40px;
     border: none;
