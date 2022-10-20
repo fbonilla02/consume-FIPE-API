@@ -82,12 +82,11 @@ formVehicle.addEventListener('submit', async(e)=>{
 
     mostrarAvaluo.classList.remove('hidden')
     seccionInfo.classList.remove('hidden')
-    mostrarAvaluo.innerHTML += `<P>Marca: ${total.Marca}</P>
-    <p>Modelo: ${total.Modelo}</p>
-    <p>Combustible: ${total.Combustivel}</p>
-        <p>Valor: ${total.Valor}</p>
-        <p>Impuestos: ${valorImpuesto}</p>
-       
+    mostrarAvaluo.innerHTML = `<P><stong>Marca:</stong> ${total.Marca}</P>
+    <p> <stong> Modelo:</stong> ${total.Modelo}</p>
+    <p> <stong> Combustible:</stong> ${total.Combustivel}</p>
+    <p> <stong> Valor:</stong> ${total.Valor}</p>
+    <p> <stong> Impuestos:</stong> ${valorImpuesto}</p>
     `
     
 })
@@ -102,9 +101,9 @@ mostrarDivisas.addEventListener('click', async ()=>{
     //convertimos las monedas en cop antes de mapearlas
     const copResult =  Intl.NumberFormat( {  currency: 'COP' }).format(result)
     const copResultimp =  Intl.NumberFormat({  currency: 'COP' }).format(resultimp)
-    divisas.innerHTML = `
-    <p>Pesos COP: ${copResult}</p>
-        <p>Impuestos COP: ${copResultimp}</p>`
+    divisas.innerHTML = `<h3 class='center'>Valores en Cop</h3>
+    <p><stong>Pesos :</stong> ${copResult} COP</p>
+    <p><stong>Impuestos :</stong> ${copResultimp} COP</p>`
 })
 
 
